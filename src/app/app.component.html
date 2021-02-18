@@ -1,24 +1,15 @@
 <h1>Hello world!</h1>
 
-<p>title - {{title}}</p>
-<p>number - {{number / 100}}</p>
-<p>arr - {{arr}}</p>
-<p>obj - {{obj?.b?.c}}</p>
-<p>40 + 2 = {{40 + 2}}</p>
-<p>{{"Hello " + "World " + "!"}}</p>
+<label for="keyup">keyup.enter</label><br>
+<input id="keyup" placeholder="keyup.enter" type="text" (keyup.enter)="onInputChange($event)">
+
+<p><strong>{{inputValue}}</strong></p>
+
+<label for="blur">keyup.enter</label><br>
+<input id="blur" placeholder="blur" type="text" (blur)="onBlurChange(myInput.value)" #myInput>
+
+<p><strong>{{inputValueBlur}}</strong></p>
+
+<button (click)="onClickHandle()">Click me!</button>
 
 <hr>
-<p>интерполяция <code><img src="{{img}}" alt="react"></code></p>
-<img src="{{img}}" alt="react">
-
-<p>односторонний байндинг <code></code></p>
-<img [src]="img" alt="react">
-
-<hr>
-
-<app-post></app-post>
-<app-post></app-post>
-
-<hr>
-
-<app-post4></app-post4>
