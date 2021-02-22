@@ -1,24 +1,11 @@
 <h1>Hello world!</h1>
 
-<p>title - {{title}}</p>
-<p>number - {{number / 100}}</p>
-<p>arr - {{arr}}</p>
-<p>obj - {{obj?.b?.c}}</p>
-<p>40 + 2 = {{40 + 2}}</p>
-<p>{{"Hello " + "World " + "!"}}</p>
+<input type="text" [value]="title" (input)="onInputHandle($event)">
 
-<hr>
-<p>интерполяция <code><img src="{{img}}" alt="react"></code></p>
-<img src="{{img}}" alt="react">
+<p>{{title}}</p>
 
-<p>односторонний байндинг <code></code></p>
-<img [src]="img" alt="react">
+<br>
 
-<hr>
+<input type="text" [(ngModel)]="titleNgModel">
 
-<app-post></app-post>
-<app-post></app-post>
-
-<hr>
-
-<app-post4></app-post4>
+<p>{{titleNgModel}}</p>
