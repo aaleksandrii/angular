@@ -27,4 +27,8 @@ export class AppComponent {
       text: 'I\'m a social vegan, I\'m avoiding meets',
     },
   ];
+
+  updatePosts(post: IPost): any {
+    this.posts.unshift(post);
+  }
 }
