@@ -1,4 +1,53 @@
 <div class="container">
   <h1>Angular Component</h1>
 
+  <p
+    fontWeight="bold"
+    [appStyle]="'red'"
+    [dStyles]="{border: '1px solid blue', borderRadius: '5px'}"
+  >
+    <b>BINDING</b>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita, quia?
+  </p>
+  <br>
+
+  <p
+    fontWeight="300"
+    [appStyle]="'blue'"
+    [dStyles]="{border: '2px solid red', borderRadius: '10px'}"
+  >
+    <b>BINDING</b>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita, quia?
+  </p>
+  <br>
+
+  <p
+    fontWeight="300"
+    [appStyle]="'blue'"
+    [dStyles]="{border: '2px solid red', borderRadius: '10px'}"
+  >
+    <b>HOST BINDING</b>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita, quia?
+  </p>
+  <br>
+
+  <div style="display: flex">
+    <div style="width: 50%; margin: 0 10px">
+      <button class="btn" (click)="isVisible = !isVisible">Toggle</button>
+      <b><span style="text-decoration: underline">DEFAULT</span> Structure Directive</b>
+
+      <div *ngIf="isVisible" class="wrap">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores cumque debitis excepturi, molestias quasi qui rem soluta! Architecto possimus, ullam!</p>
+      </div>
+    </div>
+
+    <div style="width: 50%; margin: 0 10px">
+      <button class="btn" (click)="isVisibleCustom = !isVisibleCustom">Toggle</button>
+      <b><span style="text-decoration: underline">CUSTOM</span> Structure Directive</b>
+
+      <div *appIfnot="!isVisibleCustom" class="wrap">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores cumque debitis excepturi, molestias quasi qui rem soluta! Architecto possimus, ullam!</p>
+      </div>
+    </div>
+  </div>
 </div>
