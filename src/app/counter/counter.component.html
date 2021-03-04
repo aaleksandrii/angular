@@ -1,0 +1,25 @@
+<hr>
+
+<fieldset>
+  <legend><h2>closery for service(using service from global provides)</h2></legend>
+
+  <div class="card">
+    <h2>AppCounter: {{ appCounterService.counter }}</h2>
+
+    <button class="btn" (click)="appCounterService.increase()">+</button>
+    <button class="btn" (click)="appCounterService.decrease()">-</button>
+  </div>
+</fieldset>
+<br>
+
+<fieldset>
+  <legend><h2>closery for service(using service from private provides)</h2></legend>
+
+  <div class="card">
+    <h2>LocalCounter: {{ localCounterService.counter }}</h2>
+
+    <button class="btn" (click)="localCounterService.increase()">+</button>
+    <button class="btn" (click)="localCounterService.decrease()">-</button>
+  </div>
+</fieldset>
+<br>

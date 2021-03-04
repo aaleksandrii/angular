@@ -1,4 +1,29 @@
 <div class="container">
-  <h1>Angular Component</h1>
+  <h1>Angular Service</h1>
 
+  <fieldset>
+    <legend><h2>global include service</h2></legend>
+
+    <div class="card">
+      <h2>AppCounter: {{ appCounterService.counter }}</h2>
+
+      <button class="btn" (click)="appCounterService.increase()">+</button>
+      <button class="btn" (click)="appCounterService.decrease()">-</button>
+    </div>
+  </fieldset>
+  <br>
+
+  <fieldset>
+    <legend><h2>local include service</h2></legend>
+
+    <div class="card">
+      <h2>LocalCounter: {{ localCounterService.counter }}</h2>
+
+      <button class="btn" (click)="localCounterService.increase()">+</button>
+      <button class="btn" (click)="localCounterService.decrease()">-</button>
+    </div>
+  </fieldset>
+  <br>
+
+  <app-counter></app-counter>
 </div>
