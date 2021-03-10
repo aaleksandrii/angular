@@ -1,4 +1,11 @@
 <div class="container">
-  <h1>Angular Component</h1>
+  <h1>Angular NgModel</h1>
 
+  <app-switch
+    [(ngModel)]="appState"
+    (ngModelChange)="handleChange()"
+  ></app-switch>
+  <hr>
+
+  <p>appState: {{ appState }}</p>
 </div>
