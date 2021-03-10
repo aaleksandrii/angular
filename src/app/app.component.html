@@ -11,13 +11,11 @@
 
   <hr>
 
-  <div class="card">
-    <p>
-      <span class="completed">Name</span>
-      <span>
-        <button class="btn btn-danger">Delete</button>
-        <button class="btn">Finish</button>
-      </span>
-    </p>
+  <div class="card card--content" *ngFor="let todo of todos">
+    <span [class.completed]="todo.completed">{{ todo.title | titlecase }}</span>
+    <span>
+      <button class="btn btn-danger">Delete</button>
+      <button class="btn" [disabled]="todo.completed">Done</button>
+    </span>
   </div>
 </div>
