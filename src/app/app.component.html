@@ -15,7 +15,7 @@
     <div class="card card--content" *ngFor="let todo of todos">
       <span [class.completed]="todo.completed">{{ todo.title | titlecase }}</span>
       <span>
-      <button class="btn btn-danger">Delete</button>
+      <button class="btn btn-danger" (click)="removeTodo(todo.id)">Delete</button>
       <button class="btn" [disabled]="todo.completed">Done</button>
     </span>
     </div>

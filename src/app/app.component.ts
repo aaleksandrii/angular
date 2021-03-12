@@ -1,7 +1,7 @@
 
+import { delay } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { delay } from "rxjs/operators";
 
 export interface Todo {
   completed: boolean;
@@ -12,7 +12,7 @@ export interface Todo {
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit{
   todos: Todo[] = [];
@@ -39,7 +39,7 @@ export class AppComponent implements OnInit{
     }
 
     this.http.post<Todo>('https://jsonplaceholder.typicode.com/todos', newTodo).subscribe(response => {
-      console.log('response', response)
+      console.log('addTodo post response', response)
       this.todos.push(response);
       this.todoTitle = '';
       this.loading = false;
@@ -54,5 +54,12 @@ export class AppComponent implements OnInit{
         this.todos = todos;
         this.loading = false;
       });
+  }
+
+  removeTodo(id: number) {
+    this.http.delete<void>(`https://jsonplaceholder.typicode.com/posts/${id}`).subscribe(response => {
+      console.log('removeTodo delete response', response)
+      this.todos = this.todos.filter(post => post.id !== id);
+    });
   }
 }
