@@ -1,13 +1,7 @@
 
-import { delay } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 
-export interface Todo {
-  completed: boolean;
-  title: string;
-  id?: number;
-}
+import { Todo, TodosService } from './todos.service';
 
 @Component({
   selector: 'app-root',
@@ -17,14 +11,16 @@ export interface Todo {
 export class AppComponent implements OnInit{
   todos: Todo[] = [];
 
-  todoTitle: string = '';
+  todoTitle = '';
 
   loading = false;
 
-  constructor(public http: HttpClient) {}
+  errorMessage = '';
+
+  constructor(private todosService: TodosService) {}
 
   ngOnInit(): void {
-    this.fetchTodos()
+    this.fetchTodos();
   }
 
   addTodo() {
@@ -36,30 +32,44 @@ export class AppComponent implements OnInit{
     const newTodo: Todo = {
       title: this.todoTitle,
       completed: false,
-    }
+    };
 
-    this.http.post<Todo>('https://jsonplaceholder.typicode.com/todos', newTodo).subscribe(response => {
-      console.log('addTodo post response', response)
-      this.todos.push(response);
-      this.todoTitle = '';
-      this.loading = false;
-    });
+    this.todosService.addTodo(newTodo)
+      .subscribe(response => {
+        this.todos.push(response);
+        this.todoTitle = '';
+        this.loading = false;
+      }, error => {
+        this.errorMessage = error?.message || 'Error';
+      });
   }
 
   fetchTodos() {
     this.loading = true;
-    this.http.get<Todo[]>('https://jsonplaceholder.typicode.com/todos?_limit=2')
-      .pipe(delay(1500))
+    this.todosService.fetchTodo()
       .subscribe(todos => {
         this.todos = todos;
         this.loading = false;
+      }, error => {
+        this.errorMessage = error?.message || 'Error';
       });
   }
 
   removeTodo(id: number) {
-    this.http.delete<void>(`https://jsonplaceholder.typicode.com/posts/${id}`).subscribe(response => {
-      console.log('removeTodo delete response', response)
-      this.todos = this.todos.filter(post => post.id !== id);
-    });
+    this.todosService.removeTodo(id)
+      .subscribe(() => {
+        this.todos = this.todos.filter(post => post.id !== id);
+      }, error => {
+        this.errorMessage = error?.message || 'Error';
+      });
+  }
+
+  completeTodo(id: number) {
+    this.todosService.completeTodo(id)
+      .subscribe(todo => {
+        this.todos.find(t => t.id === todo.id).completed = true;
+      }, error => {
+        this.errorMessage = error?.message || 'Error';
+      });
   }
 }
